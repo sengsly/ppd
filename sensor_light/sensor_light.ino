@@ -94,7 +94,10 @@ void EEPROM_GW_ADDR(int gwAddress){
 
 }
 bool saveConfig(){
-  
+  eeprom_write_word(EE_VOL_LIM, voltage_lim);
+  eeprom_write_word(EE_CUR_LIM, current_lim);
+  eeprom_write_word(EE_TIMER_ON, timer_on_time);
+  eeprom_write_word(EE_TIMER_OFF, timer_off_time);
 }
 bool loadConfig(){
   voltage_lim= eeprom_read_word(EE_VOL_LIM);
