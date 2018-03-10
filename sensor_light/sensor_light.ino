@@ -60,50 +60,19 @@ void encode(int Message, void* Data){
   Data="hello how are you";
 
 }
-void EEPROM_SaveTMR_ON(int Hours, int Minute){
-
-
-}
-
-void EEPROM_SaveTMR_OFF(int Hours, int Minute){
-
-
-}
-
-void EEPROM_CUR_LIM(int current){
-
-
-}
-
-void EEPROM_VOL_LIM(int voltage){
-
-
-}
-
-void EEPROM_RADIO_CH(int channel){
-
-
-}
-
-void EEPROM_NE_ADDR(int address){
-
-
-}
-
-void EEPROM_GW_ADDR(int gwAddress){
-
-}
 bool saveConfig(){
   eeprom_write_word(EE_VOL_LIM, voltage_lim);
   eeprom_write_word(EE_CUR_LIM, current_lim);
   eeprom_write_word(EE_TIMER_ON, timer_on_time);
   eeprom_write_word(EE_TIMER_OFF, timer_off_time);
+  return true;
 }
 bool loadConfig(){
   voltage_lim= eeprom_read_word(EE_VOL_LIM);
   current_lim= eeprom_read_word(EE_CUR_LIM);
   timer_on_time= eeprom_read_word(EE_TIMER_ON);
   timer_off_time= eeprom_read_word(EE_TIMER_OFF);
+  return true;
 }
 
 bool processMessage(int Message){
