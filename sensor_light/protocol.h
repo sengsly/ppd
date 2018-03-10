@@ -10,11 +10,12 @@
 #define SET_GW_ADDR     0x19
 
 
-#define EE_VOL_LIM  0x01
-#define EE_CUR_LIM  0x03
-#define EE_TIMER_ON 0x05
-#define EE_TIMER_OFF    0x07
-
+#define EE_VOL_LIM  0x00
+#define EE_CUR_LIM  0x02
+#define EE_TIMER_ON 0x04
+#define EE_TIMER_OFF    0x06
+#define EE_CRC_CHECK    0x08
+#define EE_MAXNUM       10
 const int TIME_OUT          =   5000;           //time out in ms
 const int SLAVE_ID          =   001;            //NE  id
 const int RADIO_CH          =   12;             //Frequency channel
@@ -23,6 +24,14 @@ const int GW_ADDRESS        =   1;              //address
 
 
 byte databuffer[40];
+struct Param_struct{
+    unsigned int voltage_lim;
+    unsigned int current_lim;
+    unsigned int timer_on_time;
+    unsigned int timer_off_time;
+    unsigned int crcValue;
+};
+
 struct data_struct{
     unsigned int slave_address;
     unsigned int master_address;
