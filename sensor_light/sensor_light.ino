@@ -1,6 +1,6 @@
 #include <AESLib.h>
 #include  "protocol.h"
-
+#include "EEPROM.h"
 /*
 Address = 4 Bytes
 Channel	= 3 Bytes
@@ -13,9 +13,9 @@ I2		= 1 Bytes
 I3		= 1 Bytes
 */
 
-char voltage_lim=0;
-char current_lim=0;
-char radio_channel=0;
+unsigned int voltage_lim=0;
+unsigned int current_lim=0;
+unsigned int radio_channel=0;
 unsigned int timer_on_time=0;
 unsigned int timer_off_time=0;
 unsigned int ne_id=0;             //NE  id

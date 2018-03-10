@@ -1,0 +1,4 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "sensor_light\\sensor_light.ino"
+}
