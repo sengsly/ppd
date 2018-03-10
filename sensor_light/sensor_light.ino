@@ -28,7 +28,6 @@ unsigned int current_l2=0;          //A
 unsigned int current_l3=0;          //A
 unsigned int register_id=0;         //register id
 
-Crc16 crc; 
 Param_struct param;
 byte paraConfig[EE_MAXNUM];       //an array in SRAM
 
@@ -61,19 +60,28 @@ void encode(int Message, void* Data){
 }
 bool saveConfig(){
 
+  unsigned int crcvalue;
+
+  param.crcValue = gen_crc16(paraConfig,EE_MAXNUM-3);
+  memcpy(paraConfig,&param,EE_MAXNUM);
+  EEPROM.put(0,paraConfig);
+  Serial.print("crc = 0x");    
+  Serial.println(crcvalue, HEX);
+  
+/*
   eeprom_write_word(EE_VOL_LIM  , voltage_lim);
   eeprom_write_word(EE_CUR_LIM  , current_lim);
   eeprom_write_word(EE_TIMER_ON , timer_on_time);
   eeprom_write_word(EE_TIMER_OFF, timer_off_time);
+  */
   return true;
 }
 bool loadConfig(){
-  unsigned int crcCheck;
   unsigned int crcvalue;
 
   EEPROM.get(0,paraConfig);
-  memcpy(param,paraConfig,EE_MAXNUM)
-  crcvalue = crc.XModemCrc(paraConfig,0,EE_MAXNUM-1);
+  memcpy(&param,paraConfig,EE_MAXNUM);
+  crcvalue = gen_crc16(paraConfig,EE_MAXNUM-3);     //Remove CRC from the end
   Serial.print("crc = 0x");    
   Serial.println(crcvalue, HEX);
 
@@ -83,7 +91,7 @@ bool loadConfig(){
     param.voltage_lim=150;
     param.current_lim=10;
     param.timer_on_time=1800;
-    param.timer_off_time=0800;
+    param.timer_off_time=800;
     return false;
   }else{
     Serial.print("Load configuratoin from EEPROM");
