@@ -15,7 +15,11 @@
 #define EE_TIMER_ON 0x05
 #define EE_TIMER_OFF    0x07
 
-const int TIME_OUT  =        500;          //time out in ms
+const int TIME_OUT          =   5000;          //time out in ms
+const int SLAVE_ID          =   001;             //NE  id
+const int RADIO_CH          =   12;
+const int SLAVE_ADDESS      =   10;          //NE address
+const int GW_ADDRESS        =   1;     //address
 
 
 byte databuffer[40];

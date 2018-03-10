@@ -17,7 +17,7 @@ unsigned int voltage_lim=0;
 unsigned int current_lim=0;
 unsigned int timer_on_time=0;
 unsigned int timer_off_time=0;
-unsigned int slave_id=0;             //NE  id
+
 unsigned int voltage_l1=0;          //V
 unsigned int voltage_l2=0;          //V
 unsigned int voltage_l3=0;          //V
@@ -26,9 +26,6 @@ unsigned int current_l2=0;          //A
 unsigned int current_l3=0;          //A
 unsigned int register_id=0;         //register id
 
-const int radio_channel=12;
-unsigned int slave_address=10;          //NE address
-unsigned int gateway_address=1;     //address
 
 
 
@@ -61,16 +58,16 @@ void encode(int Message, void* Data){
 
 }
 bool saveConfig(){
-  eeprom_write_word(EE_VOL_LIM, voltage_lim);
-  eeprom_write_word(EE_CUR_LIM, current_lim);
-  eeprom_write_word(EE_TIMER_ON, timer_on_time);
+  eeprom_write_word(EE_VOL_LIM  , voltage_lim);
+  eeprom_write_word(EE_CUR_LIM  , current_lim);
+  eeprom_write_word(EE_TIMER_ON , timer_on_time);
   eeprom_write_word(EE_TIMER_OFF, timer_off_time);
   return true;
 }
 bool loadConfig(){
-  voltage_lim= eeprom_read_word(EE_VOL_LIM);
-  current_lim= eeprom_read_word(EE_CUR_LIM);
-  timer_on_time= eeprom_read_word(EE_TIMER_ON);
+  voltage_lim   = eeprom_read_word(EE_VOL_LIM);
+  current_lim   = eeprom_read_word(EE_CUR_LIM);
+  timer_on_time = eeprom_read_word(EE_TIMER_ON);
   timer_off_time= eeprom_read_word(EE_TIMER_OFF);
   return true;
 }

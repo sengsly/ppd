@@ -1,4 +1,5 @@
 {
     "board": "arduino:avr:uno",
-    "sketch": "sensor_light\\sensor_light.ino"
+    "sketch": "sensor_light\\sensor_light.ino",
+    "port": "COM3"
 }
