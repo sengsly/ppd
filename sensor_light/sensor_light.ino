@@ -15,12 +15,9 @@ I3		= 1 Bytes
 
 unsigned int voltage_lim=0;
 unsigned int current_lim=0;
-unsigned int radio_channel=0;
 unsigned int timer_on_time=0;
 unsigned int timer_off_time=0;
 unsigned int slave_id=0;             //NE  id
-unsigned int slave_address=0;          //NE address
-unsigned int gateway_address=0;     //address
 unsigned int voltage_l1=0;          //V
 unsigned int voltage_l2=0;          //V
 unsigned int voltage_l3=0;          //V
@@ -28,7 +25,10 @@ unsigned int current_l1=0;          //A
 unsigned int current_l2=0;          //A
 unsigned int current_l3=0;          //A
 unsigned int register_id=0;         //register id
-unsigned int time_out=500;          //time out in ms
+
+const int radio_channel=12;
+unsigned int slave_address=10;          //NE address
+unsigned int gateway_address=1;     //address
 
 
 
@@ -92,24 +92,15 @@ void EEPROM_NE_ADDR(int address){
 
 void EEPROM_GW_ADDR(int gwAddress){
 
-
+}
+bool saveConfig(){
+  
 }
 bool loadConfig(){
-  int a=0;
-  int b=0;
-/*
-#define SET_RTC_TIME    0x10
-#define SET_TMR_ON      0x12
-#define SET_TMR_OFF     0x13
-#define SET_CUR_LIM     0x14
-#define SET_VOL_LIM     0x15
-#define SET_NE_ID     0x16
-#define SET_RADIO_CH    0x17
-#define SET_NE_ADDR     0x18
-#define SET_GW_ADDR     0x19
-*/
-  
-
+  voltage_lim= eeprom_read_word(EE_VOL_LIM);
+  current_lim= eeprom_read_word(EE_CUR_LIM);
+  timer_on_time= eeprom_read_word(EE_TIMER_ON);
+  timer_off_time= eeprom_read_word(EE_TIMER_OFF);
 }
 
 bool processMessage(int Message){

@@ -9,6 +9,15 @@
 #define SET_NE_ADDR     0x18
 #define SET_GW_ADDR     0x19
 
+
+#define EE_VOL_LIM  0x01
+#define EE_CUR_LIM  0x03
+#define EE_TIMER_ON 0x05
+#define EE_TIMER_OFF    0x07
+
+const int TIME_OUT  =        500;          //time out in ms
+
+
 byte databuffer[40];
 struct data_struct{
     unsigned int slave_address;
